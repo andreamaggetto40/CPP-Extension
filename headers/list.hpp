@@ -10,6 +10,14 @@ class list{
     struct node* head;
     struct node* tail;
 
+    void create_recursion(struct node* cell){
+        if(cell){
+            create_recursion(cell->next);
+            cout<<cell->info<<endl;
+        }
+    };
+
+
     public:
         list();
 
@@ -20,7 +28,8 @@ class list{
         unsigned period();
         void make_circular();
         void merge_list(const list<T>& l1, const list<T>& l2);
-        
+        void print_reverse();
+        string concat(int pos,int len);
 
         struct node* operator=(list<T> to_copy);
 };
@@ -95,3 +104,20 @@ void list<T>::merge_list(const list<T>& l1, const list<T>& l2){
 
     output.print();
 }
+
+template<typename T>
+void list<T>::print_reverse(){    
+    create_recursion(head);
+}
+
+template<typename T>
+string list<T>::concat(int pos, int len){
+    string output{}; struct node* iterator{head};
+
+    for(size_t i{0}; i < pos and iterator; ++i, iterator = iterator->next);
+    for(size_t i{0}; i < len and iterator; ++i, output += iterator->info, iterator = iterator->next);
+
+    return output;
+
+}
+
