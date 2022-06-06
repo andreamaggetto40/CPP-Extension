@@ -11,9 +11,9 @@ class circular_list{
     struct node* head; struct node* tail;
 
     bool positive(struct node* cell){
-        return cell->info > 0 and positive(cell->next);
-
-        
+        if(!cell) return false;
+        else if(cell->next == cell) return cell->info > 0;
+        else return cell->info > 0 and positive(cell->next);
     }
 
     public:

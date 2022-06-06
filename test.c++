@@ -13,5 +13,5 @@ int main(int argc, char const *argv[])
 
     the_list.append(10); the_list.append(5); the_list.append(9);
 
-    
+    cout<<the_list.is_any_positive() <<endl;
 }
