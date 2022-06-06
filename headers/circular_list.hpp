@@ -10,6 +10,12 @@ class circular_list{
 
     struct node* head; struct node* tail;
 
+    bool positive(struct node* cell){
+        return cell->info > 0 and positive(cell->next);
+
+        
+    }
+
     public:
         circular_list();
 
@@ -19,6 +25,8 @@ class circular_list{
         void print();
         void find_tail();
         void insert_at(const std::string& str, int index);
+
+        bool is_any_positive();
 };
 
 template<typename T>
@@ -68,4 +76,9 @@ void circular_list<T>::insert_at(const string& str, int index){
     tail = iterator;
     iterator->next = to_add;
     head = to_add;
+}
+
+template<typename T>
+bool circular_list<T>::is_any_positive(){      
+    return positive(head);
 }
