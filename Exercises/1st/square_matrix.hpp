@@ -13,5 +13,7 @@ class square_matrix{
         int at(unsigned row,unsigned col) const;
 
         bool is_all_primes() const;
+
+        square_matrix reduce(unsigned row, unsigned col) const;
 };
 

@@ -53,3 +53,9 @@ bool square_matrix::is_all_primes() const{
 
     return check;
 }
+
+square_matrix square_matrix::reduce(unsigned row, unsigned col) const{  
+    square_matrix output{size() - 1};
+
+    
+}

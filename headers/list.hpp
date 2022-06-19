@@ -1,4 +1,4 @@
-using std::cout; using std::endl;
+using std::cout; using std::endl; using std::string;
 
 template<typename T>
 class list{
@@ -30,8 +30,11 @@ class list{
         void merge_list(const list<T>& l1, const list<T>& l2);
         void print_reverse();
         string concat(int pos,int len);
+        void deleater() const;
 
         struct node* operator=(list<T> to_copy);
+
+        struct node* even_odd_list() const;
 };
 
 template<typename T>
@@ -119,5 +122,22 @@ string list<T>::concat(int pos, int len){
 
     return output;
 
+}
+
+template<typename T>
+void list<T>::deleater() const{ 
+    node* iterator{head},destroyer{},matcher{head};
+
+    while(iterator){
+        destroyer = iterator;
+
+        if(head == matcher) head = matcher = matcher->next;
+        else matcher->next = iterator->next;
+        iterator = iterator->next->next;
+        
+        if(!iterator->next) matcher->next->next = nullptr;
+
+        delete destroyer;
+    }
 }
 
