@@ -1,4 +1,5 @@
-using std::cout; using std::endl; using std::string;
+#include <vector>
+using std::cout; using std::endl; using std::string; using std::vector; 
 
 template<typename T>
 class list{
@@ -17,6 +18,15 @@ class list{
         }
     };
 
+    void add_wowels(struct node* cell,vector<char>& vect){
+        if(cell){
+            if(cell->info == 'a' or cell->info == 'e' or cell->info == 'i' or cell->info == 'o' or cell->info == 'u'){
+                vect.push_back(cell->info);
+            }
+            add_wowels(cell->next,vect);
+        }
+    }
+
 
     public:
         list();
@@ -31,10 +41,12 @@ class list{
         void print_reverse();
         string concat(int pos,int len);
         void deleater() const;
+        void wowels_appender(vector<char>& vect);
 
         struct node* operator=(list<T> to_copy);
 
         struct node* even_odd_list() const;
+
 };
 
 template<typename T>
@@ -139,5 +151,11 @@ void list<T>::deleater() const{
 
         delete destroyer;
     }
+}
+
+template<typename T>
+void list<T>::wowels_appender(vector<char>& vect){        
+    add_wowels(head,vect);
+
 }
 

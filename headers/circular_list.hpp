@@ -16,6 +16,10 @@ class circular_list{
         else return cell->info > 0 and positive(cell->next);
     }
 
+    void private_deleater(node* cell){
+        
+    }
+
     public:
         circular_list();
 
@@ -23,10 +27,13 @@ class circular_list{
         size_t size();
         void append(T item);
         void print();
-        void find_tail();
+        void get_tail() const;
         void insert_at(const std::string& str, int index);
+        void delete_even();
 
         bool is_any_positive();
+
+
 };
 
 template<typename T>
@@ -46,7 +53,14 @@ void circular_list<T>::append(T item){
     }
 }
 
+template<typename T>
+void circular_list<T>::get_tail() const{
+    node* iterator{head};
 
+    for(; iterator->next != head; iterator = iterator->next);
+
+    tail = iterator;
+}
 
 template<typename T>
 size_t circular_list<T>::size(){
@@ -81,4 +95,9 @@ void circular_list<T>::insert_at(const string& str, int index){
 template<typename T>
 bool circular_list<T>::is_any_positive(){      
     return positive(head);
+}
+
+template<typename T>
+void circular_list<T>::delete_even(){ 
+    private_deleater(head);
 }
