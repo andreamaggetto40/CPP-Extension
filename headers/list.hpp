@@ -27,6 +27,43 @@ class list{
         }
     }
 
+    void delete_even(node* cell){
+        if(cell){
+            if(!(cell->info % 2)){
+                node* destroyer{cell};
+
+                if(!cell->next) delete destroyer;
+                else{
+                    cell = cell->next;
+                    delete destroyer;
+                    delete_even(cell);
+                }
+            }
+            else delete_even(cell->next);
+        }
+    }
+
+    void make_copy(node* cell,list<T>& output){
+        if(cell){
+            make_copy(cell->next,output);
+            output.append(cell->info);
+        }
+    }
+
+    void make_cumulative_sum(node* cell,list<T>& output){
+        make_cumulative_sum(cell->next,output);
+        node* adder{cell};
+
+        if(!cell->next){
+            output.append(cell->info);
+            adder = output.head;
+        }
+        else{
+            output.append(cell->info + adder->info);
+            adder = adder->next;
+        }
+    }
+
 
     public:
         list();
@@ -42,10 +79,14 @@ class list{
         string concat(int pos,int len);
         void deleater() const;
         void wowels_appender(vector<char>& vect);
+        void delete_even_numbers();
 
         struct node* operator=(list<T> to_copy);
 
         struct node* even_odd_list() const;
+
+        list copy_reverse();
+        list cumulative_sum();
 
 };
 
@@ -156,6 +197,26 @@ void list<T>::deleater() const{
 template<typename T>
 void list<T>::wowels_appender(vector<char>& vect){        
     add_wowels(head,vect);
-
 }
+
+template<typename T>
+void list<T>::delete_even_numbers(){
+    delete_even(head);
+}
+
+template<typename T>
+list<T> list<T>::copy_reverse(){
+    list output;
+    make_copy(head,output);
+
+    return output;
+}
+
+template<typename T>
+list<T> list<T>::cumulative_sum(){  
+    list output{};
+
+    make_cumulative_sum(head,output);
+}
+
 

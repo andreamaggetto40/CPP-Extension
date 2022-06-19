@@ -16,8 +16,20 @@ class circular_list{
         else return cell->info > 0 and positive(cell->next);
     }
 
-    void private_deleater(node* cell){
-        
+    void delete_even_numbers(node* cell){
+        if(cell){
+            if(!(cell->info % 2)){
+                node* destroyer{cell};
+
+                if(cell->next == head) delete destroyer;
+                else{
+                    cell = cell->next;
+                    delete destroyer;
+                    delete_even_numbers(cell);
+                }
+            }
+            else delete_even_numbers(cell->next);
+        }
     }
 
     public:
@@ -98,6 +110,6 @@ bool circular_list<T>::is_any_positive(){
 }
 
 template<typename T>
-void circular_list<T>::delete_even(){ 
-    private_deleater(head);
+void circular_list<T>::delete_even(){   
+    delete_even_numbers(head);
 }
