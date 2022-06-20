@@ -7,6 +7,6 @@
 #include "headers/vector_list.hpp"
 
 int main(int argc, char const *argv[])
-{       
+{           
     
 }

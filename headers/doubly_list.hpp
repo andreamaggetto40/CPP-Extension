@@ -8,12 +8,23 @@ class double_list{
 
     struct node* head; struct node* tail;
 
+    bool make_palindrome(node* first,node* second){
+        if(first and second){
+            if(first == second) return true;
+            else{
+                return first->info == second->info and make_palindrome(first->next,second->prev);
+            }
+        }
+    }
+
     public:
         double_list();
 
         void append(const T item);
-        void print();
+        void print(); 
         void print_reverse();
+        bool is_palindrome();
+
 };
 
 template<typename T>
@@ -42,3 +53,9 @@ template<typename T>
 void double_list<T>::print_reverse(){
     for(; tail; std::cout<<tail->info<<std::endl,tail = tail->prev);
 }
+
+template<typename T>
+bool double_list<T>::is_palindrome(){
+    return make_palindrome(head,tail);
+}
+

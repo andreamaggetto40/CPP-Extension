@@ -82,8 +82,22 @@ class list{
             }
             else make_delete_consec(cell->next);
         }
+    }
 
-        
+    int make_delete_odds(node* cell, unsigned int amount){
+        if(!cell) return 0;
+        else{
+            if(!amount) return 0;
+            else{
+                if(cell->info % 2){
+                    node* destroyer{cell};
+                    cell = cell->next;
+                    delete destroyer;
+                    return 1 + make_delete_odds(cell,amount - 1);
+                }
+                else return 0 + make_delete_odds(cell->next,amount);
+            }
+        }
     }
 
 
@@ -103,6 +117,7 @@ class list{
         void wowels_appender(vector<char>& vect);
         void delete_even_numbers();
         void delete_consec();
+        unsigned int delete_amount_odds(unsigned int odds_to_delete);
 
         struct node* operator=(list<T> to_copy);
 
@@ -247,4 +262,9 @@ list<T> list<T>::cumulative_sum(){
 template<typename T>
 void list<T>::delete_consec(){
     make_delete_consec(head);
+}
+
+template<typename T>
+unsigned list<T>::delete_amount_odds(unsigned int odds_to_delete){
+    return make_delete_odds(head,odds_to_delete);
 }
