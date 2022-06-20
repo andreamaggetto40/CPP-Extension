@@ -9,6 +9,7 @@ class list_vect{
 
     public:
         list_vect();
+        ~list_vect();
 
         size_t size() const;
         void print() const;
@@ -18,9 +19,10 @@ class list_vect{
 };
 
 template<typename T>
-list_vect<T>::list_vect(){  
-    
-}
+list_vect<T>::list_vect(){}
+
+template<typename T>
+inline list_vect<T>::~list_vect(){cout<<"Destructor properly called!"<<endl;}
 
 template<typename T>
 size_t list_vect<T>::size() const{
