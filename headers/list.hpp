@@ -70,6 +70,22 @@ class list{
         }
     }
 
+    void make_delete_consec(node* cell){
+        if(cell){
+            if(cell->info == cell->next->info){
+                node* destroyer{cell};
+
+                cell = cell->next;
+                delete destroyer;
+
+                make_delete_consec(cell);
+            }
+            else make_delete_consec(cell->next);
+        }
+
+        
+    }
+
 
     public:
         list();
@@ -86,6 +102,7 @@ class list{
         void deleater() const;
         void wowels_appender(vector<char>& vect);
         void delete_even_numbers();
+        void delete_consec();
 
         struct node* operator=(list<T> to_copy);
 
@@ -227,4 +244,7 @@ list<T> list<T>::cumulative_sum(){
     return output;
 }
 
-
+template<typename T>
+void list<T>::delete_consec(){
+    make_delete_consec(head);
+}

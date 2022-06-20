@@ -8,9 +8,5 @@
 
 int main(int argc, char const *argv[])
 {       
-    list_vect<int> first{};
-
-    for(int i = 0; i < 10; ++i,first.append(i));
-
     
 }
