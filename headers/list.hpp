@@ -14,6 +14,10 @@ class list{
     void create_recursion(struct node* cell){
         if(cell){
             create_recursion(cell->next);
+
+            if(!cell->next){
+                cout<<"Last item!";
+            }
             cout<<cell->info<<endl;
         }
     };
@@ -51,16 +55,18 @@ class list{
     }
 
     void make_cumulative_sum(node* cell,list<T>& output){
-        make_cumulative_sum(cell->next,output);
-        node* adder{cell};
+        if(cell){
+            make_cumulative_sum(cell->next,output);
+            int info{0};
 
-        if(!cell->next){
-            output.append(cell->info);
-            adder = output.head;
-        }
-        else{
-            output.append(cell->info + adder->info);
-            adder = adder->next;
+            if(!cell->next){
+                output.append(cell->info);
+                info = cell->info;
+            }
+            else{
+                output.append(cell->info + info);
+                info = cell->info;
+            }
         }
     }
 
@@ -217,6 +223,8 @@ list<T> list<T>::cumulative_sum(){
     list output{};
 
     make_cumulative_sum(head,output);
+
+    return output;
 }
 
 
